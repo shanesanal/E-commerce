@@ -44,7 +44,7 @@ public class ProductService {
     public List<GetProductDto> getAllProducts() {
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://fakestoreapi.com/products";
-        Product[] products = restTemplate.getForObject(url, Product[].class);
+         Product[] products = restTemplate.getForObject(url, Product[].class);
 
         List<GetProductDto> returnedProducts = new ArrayList<>();
 
