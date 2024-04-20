@@ -1,16 +1,27 @@
 package com.ecommerce.productservice.service;
 
+import com.ecommerce.productservice.models.Instructor;
 import com.ecommerce.productservice.models.User;
+import com.ecommerce.productservice.repository.InstructorRepository;
 import com.ecommerce.productservice.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
-    public UserService(UserRepository userRepository) {
+    private final InstructorRepository instructorRepository;
+    public UserService(UserRepository userRepository, InstructorRepository instructorRepository) {
         this.userRepository = userRepository;
+        this.instructorRepository = instructorRepository;
     }
+
+
+
+
+
     public User createUser(String name, String email) {
 
         User user = new User();
@@ -20,10 +31,25 @@ public class UserService {
 
         return user;
     }
+    public Instructor createInstructor(String name, String email) {
 
-    public User getUserByName(String name) {
+        Instructor instructor = new Instructor();
+        instructor.setName(name);
+        instructor.setEmail(email);
+        instructor.setSalary(9000.00);
+        instructor.setSkill("Backend");
+        instructorRepository.save(instructor);
 
-    return userRepository.findByName(name).get();
+        return instructor;
+    }
 
+    public List<User> getUserByName(String name) {
+
+    return userRepository.findByName(name);
+
+    }
+
+    public List<Instructor> getInstructorByName(String name) {
+        return instructorRepository.findByName(name);
     }
 }
