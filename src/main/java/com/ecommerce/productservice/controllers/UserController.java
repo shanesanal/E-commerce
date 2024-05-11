@@ -13,16 +13,16 @@ import java.util.List;
 
 public class UserController {
 
-private final UserService userService;
-public UserController(UserService userService) {
-    this.userService = userService;
-}
+    private final UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("")
     public User createUser(@RequestBody CreateUserDto createUserDto) {
 
-    return userService.
-            createUser(createUserDto.getName(),createUserDto.getEmail());
+        return userService.
+                createUser(createUserDto.getName(),createUserDto.getEmail());
 
     }
     @PostMapping("/instructor")
@@ -35,7 +35,7 @@ public UserController(UserService userService) {
 
     @GetMapping("{name}")
     public List<User> getUserByName(@PathVariable(name="name") String name) {
-    return userService.getUserByName(name);
+        return userService.getUserByName(name);
     }
 
     @GetMapping("/instructor/{name}")
